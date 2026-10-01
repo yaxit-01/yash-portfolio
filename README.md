@@ -1,95 +1,220 @@
-```markdown
 # Yash Dixit — Personal Portfolio
 
-A modern, responsive personal portfolio website showcasing my projects, technical skills, and development experience. Built with React and Vite.
+🌐 **Live Website:**  
+https://yaxit-01.github.io/yash-portfolio/
 
-```
+Welcome to my personal portfolio website. I'm **Yash Dixit**, a Computer Science & Engineering student at **Noida Institute of Engineering and Technology (NIET), Greater Noida**, interested in Cloud Computing, Software Development, Backend Engineering, and DevOps.
 
----
+## 👨‍💻 About Me
 
-## 🚀 Live Demo
+I’m a Computer Science and Engineering student with a strong interest in cloud computing, software development, backend engineering, and problem solving.
 
-* **Live URL:** [Add your live deployment link here, e.g., Vercel / Netlify / GitHub Pages]
+I enjoy turning ideas into practical applications and learning by building real-world projects.
 
----
+Currently, I'm focused on strengthening my:
+
+- Data Structures & Algorithms
+- Backend Development
+- Cloud Computing
+- DevOps
+- System Design
+- Software Development
+
+My goal is to become a **Cloud Engineer**.
 
 ## 🛠️ Tech Stack
 
-* **Frontend:** React, HTML5, CSS3, JavaScript (ES6+)
-* **Tooling & Bundler:** Vite
-* **Linter:** Oxlint
+### Programming Languages
+- C/C++
+- Java
+- Python
+- JavaScript
+
+### Web Development
+- HTML
+- CSS
+- JavaScript
+- React.js
+- Node.js
+
+### Backend & Databases
+- Node.js
+- Express.js
+- REST APIs
+- MongoDB
+- PostgreSQL
+- Prisma
+- FastAPI
+
+### Cloud & DevOps
+- Linux
+- Git & GitHub
+- Docker
+- Cloud Computing
+
+### Tools & Frameworks
+- React.js
+- NestJS
+- Flutter
+- Redis
+- VS Code
+
+### Computer Science
+- Data Structures & Algorithms
+- Object-Oriented Programming
+- DBMS
+- Computer Networks
+- Operating Systems
+
+## 🚀 Featured Projects
+
+### 1. KisanFlow 360
+
+A full-stack digital platform developed as part of Smart India Hackathon.
+
+**Role:** Full-Stack / System Developer
+
+**Technologies:**
+- React.js
+- Node.js
+- Python
+- FastAPI
+- PostgreSQL
+- Redis
+- Docker
+- REST APIs
+
+The project focused on building digital workflows for agricultural procurement operations.
 
 ---
 
-## ✨ Key Features
+### 2. Innov8 Battle Arena Agents
 
-* **Responsive UI:** Fully optimized layout across mobile, tablet, and desktop screens.
-* **Projects Section:** Showcases key applications with live demos and repository links.
-* **Skills & About:** Detailed breakdown of tech stack, background, and practical experience.
-* **Contact:** Clean channels to connect via email and social networks.
+An autonomous candidate-selection system developed during **Innov8 Battle Arena at IIT Delhi** with **Team Pixel Minds**.
 
----
+**Role:** Full-Stack / AI Agent Developer
 
-## 💻 Local Development Setup
+**Technologies:**
+- Python
+- REST APIs
+- JSON
+- Autonomous Agents
+- Data Processing
+- Pytest
+- Git
 
-### Prerequisites
-
-* [Node.js](https://www.google.com/search?q=https%3A%2F%2Fnodejs.org%2F) (v18 or higher recommended)
-* `npm`
-
-### Installation & Run
-
-1. Clone the repository:
-```bash
-git clone [https://github.com/yaxit-01/yash-portfolio.git](https://github.com/yaxit-01/yash-portfolio.git)
-cd yash-portfolio
-
-```
-
-
-2. Install dependencies:
-```bash
-npm install
-
-```
-
-
-3. Run development server:
-```bash
-npm run dev
-
-```
-
-
-4. Build for production:
-```bash
-npm run build
-
-```
-
-
-5. Preview production build locally:
-```bash
-npm run preview
-
-```
-
-
+The system processes job requisitions, evaluates candidate information, and automates candidate matching and assessment workflows.
 
 ---
 
-## 📬 Connect
+### 3. Paytm GrowthPilot
 
-* **GitHub:** [@yaxit-01](https://github.com/yaxit-01)
-* **LinkedIn:** [Your LinkedIn Profile URL]
-* **Email:** your.email@example.com
+A project developed during a **Paytm Hackathon**, focused on building a practical technology solution around the selected hackathon track.
+
+🌐 **Live Project:**  
+https://paytm-growthpilot.vercel.app/
+
+💻 **GitHub Repository:**  
+https://github.com/yaxit-01/paytm-growthpilot
 
 ---
 
-## 📄 License
+### 4. Smart Hospital Management System
 
-This project is open-source and available under the MIT License.
+A Python-based desktop application designed to organize hospital management workflows and manage healthcare-related information.
 
-```
+**Technologies:**
+- Python
+- GUI
+- Database
+- Desktop Application
 
-```
+💻 **GitHub Repository:**  
+https://github.com/yaxit-01/smart_hospital_management_system
+
+## 🏆 Hackathons
+
+### Innov8 Battle Arena — IIT Delhi
+**Team:** Pixel Minds
+
+Worked on an autonomous candidate-selection system focused on:
+
+- Candidate evaluation
+- Job-requisition matching
+- Skill assessment
+- Automated workflows
+- REST API integration
+- AI agent development
+
+### Smart India Hackathon
+**Project:** KisanFlow 360
+
+Worked as a **Full-Stack / System Developer**, contributing across the application stack and system integration.
+
+### Paytm Hackathon
+**Project:** Paytm GrowthPilot
+
+Participated in a Paytm hackathon and worked on the **GrowthPilot** project as part of the hackathon development team.
+
+🔗 **Project:**  
+https://paytm-growthpilot.vercel.app/
+
+💻 **GitHub:**  
+https://github.com/yaxit-01/paytm-growthpilot
+
+## 📜 Certifications
+
+- **Getting Started with Linux Fundamentals (RH104 – RHA)** — Red Hat Training
+- **Python Programming** — iamneo
+- **Data Structures and Algorithms – I** — iamneo
+- **Introduction to Cybersecurity** — Cisco Networking Academy
+- **JavaScript** — Infosys Springboard
+
+## 🎓 Education
+
+### Bachelor of Technology — Computer Science & Engineering
+
+**Noida Institute of Engineering and Technology (NIET)**  
+Greater Noida, India
+
+**2025 — Present**
+
+Currently pursuing **2nd Year · 3rd Semester**
+
+## 📫 Connect With Me
+
+📧 **Email:**  
+dixityash2999@gmail.com
+
+💻 **GitHub:**  
+https://github.com/yaxit-01
+
+🔗 **LinkedIn:**  
+https://www.linkedin.com/in/yash-dixit-531922387/
+
+🌐 **Portfolio:**  
+https://yaxit-01.github.io/yash-portfolio/
+
+📍 **Greater Noida, India**
+
+---
+
+## ⭐ Portfolio
+
+If you like my work, feel free to explore my projects and connect with me.
+
+**Live Portfolio:**  
+https://yaxit-01.github.io/yash-portfolio/
+
+---
+
+### Built With
+
+- React.js
+- Vite
+- CSS
+- JavaScript
+- Lucide React
+- Framer Motion
+
+© 2026 Yash Dixit
