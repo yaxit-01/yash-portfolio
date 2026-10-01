@@ -441,13 +441,70 @@ function App() {
         </div>
 
       </article>
+<article className="project-card">
+  <div className="project-number">03</div>
 
+  <div className="project-main">
+    <div className="project-top">
+      <div>
+        <p className="project-type">PAYTM HACKATHON</p>
+        <h3>Paytm GrowthPilot</h3>
+      </div>
 
-      {/* PROJECT 03 */}
+      <a
+        href="https://github.com/yaxit-01/paytm-growthpilot"
+        target="_blank"
+        rel="noreferrer"
+        className="project-arrow"
+        aria-label="View Paytm GrowthPilot on GitHub"
+      >
+        ↗
+      </a>
+    </div>
+
+    <p className="project-description">
+      A hackathon project developed as part of the Paytm Hackathon,
+      focused on building a practical technology solution around the
+      GrowthPilot concept.
+    </p>
+
+    <div className="project-role">
+      <span>ROLE</span>
+      <strong>Developer</strong>
+    </div>
+
+    <div className="project-tech">
+      <span>Web Development</span>
+      <span>React</span>
+      <span>JavaScript</span>
+      <span>Vercel</span>
+    </div>
+
+    <div className="project-links">
+      <a
+        href="https://paytm-growthpilot.vercel.app/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Live Demo ↗
+      </a>
+
+      <a
+        href="https://github.com/yaxit-01/paytm-growthpilot"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub ↗
+      </a>
+    </div>
+  </div>
+</article>
+
+      {/* PROJECT 04 */}
       <article className="project-card">
 
         <div className="project-number">
-          03
+          04
         </div>
 
         <div className="project-main">
@@ -462,7 +519,9 @@ function App() {
             </div>
 
             <a
-              href="#"
+              href="https://github.com/yaxit-01/smart_hospital_management_system"
+              target="_blank"
+              rel="noreferrer"
               className="project-arrow"
               aria-label="Smart Hospital Management System project"
             >
@@ -633,6 +692,65 @@ function App() {
         </div>
 
       </article>
+      <article className="hackathon-card">
+  <div className="hackathon-index">03</div>
+
+  <div className="hackathon-content">
+    <div className="hackathon-heading">
+      <div>
+        <p className="hackathon-label">PAYTM HACKATHON</p>
+        <h3>Paytm GrowthPilot</h3>
+      </div>
+
+      <span className="hackathon-badge">
+        HACKATHON PROJECT
+      </span>
+    </div>
+
+    <p className="hackathon-description">
+      Participated in a Paytm Hackathon and worked on GrowthPilot,
+      developing a practical technology solution as part of the
+      hackathon challenge.
+    </p>
+
+    <div className="hackathon-details">
+      <div>
+        <span>ROLE</span>
+        <strong>Developer</strong>
+      </div>
+
+      <div>
+        <span>PROJECT</span>
+        <strong>Paytm GrowthPilot</strong>
+      </div>
+    </div>
+
+    <div className="hackathon-tech">
+      <span>Web Development</span>
+      <span>React</span>
+      <span>JavaScript</span>
+      <span>Vercel</span>
+    </div>
+
+    <div className="hackathon-links">
+      <a
+        href="https://paytm-growthpilot.vercel.app/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Live Demo ↗
+      </a>
+
+      <a
+        href="https://github.com/yaxit-01/paytm-growthpilot"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub ↗
+      </a>
+    </div>
+  </div>
+</article>
 
     </div>
 
@@ -949,7 +1067,7 @@ function App() {
 
   </div>
 </section>
-      </main>
+      </main>f
     </>
   );
 }
