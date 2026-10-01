@@ -1,16 +1,95 @@
-# React + Vite
+```markdown
+# Yash Dixit — Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modern, responsive personal portfolio website showcasing my projects, technical skills, and development experience. Built with React and Vite.
 
-Currently, two official plugins are available:
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Live Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Live URL:** [Add your live deployment link here, e.g., Vercel / Netlify / GitHub Pages]
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🛠️ Tech Stack
+
+* **Frontend:** React, HTML5, CSS3, JavaScript (ES6+)
+* **Tooling & Bundler:** Vite
+* **Linter:** Oxlint
+
+---
+
+## ✨ Key Features
+
+* **Responsive UI:** Fully optimized layout across mobile, tablet, and desktop screens.
+* **Projects Section:** Showcases key applications with live demos and repository links.
+* **Skills & About:** Detailed breakdown of tech stack, background, and practical experience.
+* **Contact:** Clean channels to connect via email and social networks.
+
+---
+
+## 💻 Local Development Setup
+
+### Prerequisites
+
+* [Node.js](https://www.google.com/search?q=https%3A%2F%2Fnodejs.org%2F) (v18 or higher recommended)
+* `npm`
+
+### Installation & Run
+
+1. Clone the repository:
+```bash
+git clone [https://github.com/yaxit-01/yash-portfolio.git](https://github.com/yaxit-01/yash-portfolio.git)
+cd yash-portfolio
+
+```
+
+
+2. Install dependencies:
+```bash
+npm install
+
+```
+
+
+3. Run development server:
+```bash
+npm run dev
+
+```
+
+
+4. Build for production:
+```bash
+npm run build
+
+```
+
+
+5. Preview production build locally:
+```bash
+npm run preview
+
+```
+
+
+
+---
+
+## 📬 Connect
+
+* **GitHub:** [@yaxit-01](https://github.com/yaxit-01)
+* **LinkedIn:** [Your LinkedIn Profile URL]
+* **Email:** your.email@example.com
+
+---
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
+```
+
+```
