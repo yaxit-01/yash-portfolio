@@ -3184,3 +3184,28 @@ footer {
 .hackathon-links a:hover {
   color: #ffffff;
 }
+
+/* Certificate links */
+.certification-link {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  color: #22d3ee;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+.certification-link:hover {
+  color: #ffffff;
+  gap: 12px;
+}
+.certifications-note {
+  margin-top: 22px;
+  color: #707988;
+  font-size: 12px;
+  line-height: 1.7;
+}
