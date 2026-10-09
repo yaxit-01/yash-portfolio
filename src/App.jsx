@@ -763,64 +763,115 @@ function App() {
         <p className="section-label">CERTIFICATIONS</p>
         <h2>Learning that<span> compounds.</span></h2>
       </div>
-      <p>Certifications that reflect my continuous learning across programming, cybersecurity, Linux, and computer science.</p>
+      <p>Courses and certificates across programming, Linux, cybersecurity, web development, generative AI, and communication.</p>
     </div>
-
     <div className="certifications-grid">
       <article className="certification-card">
-        <div className="certification-top"><span className="certification-number">01</span><span className="certification-type">LINUX</span></div>
-        <div className="certification-content">
-          <h3>Getting Started with Linux Fundamentals</h3>
-          <p className="certification-provider">Red Hat Training</p>
-          <p className="certification-detail">RH104 – RHA · Version 9.1</p>
+        <div className="certification-top">
+          <span className="certification-number">01</span>
+          <span className="certification-type">DSA</span>
         </div>
-        <a className="certification-link" href="/certificates/red-hat-linux.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a>
-      </article>
-
-      <article className="certification-card">
-        <div className="certification-top"><span className="certification-number">02</span><span className="certification-type">PROGRAMMING</span></div>
-        <div className="certification-content">
-          <h3>Python Programming</h3>
-          <p className="certification-provider">iamneo</p>
-          <p className="certification-detail">Programming fundamentals and Python development</p>
-        </div>
-        <a className="certification-link" href="/certificates/iamneo-python.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a>
-      </article>
-
-      <article className="certification-card">
-        <div className="certification-top"><span className="certification-number">03</span><span className="certification-type">DSA</span></div>
         <div className="certification-content">
           <h3>Data Structures and Algorithms – I</h3>
           <p className="certification-provider">iamneo</p>
-          <p className="certification-detail">Data structures, algorithms, and problem solving</p>
+          <p className="certification-detail">Course completed · May 2026</p>
         </div>
-        <a className="certification-link" href="/certificates/iamneo-dsa.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a>
+        <a className="certification-link" href="/yash-portfolio/certificates/iamneo-dsa.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
       </article>
 
       <article className="certification-card">
-        <div className="certification-top"><span className="certification-number">04</span><span className="certification-type">SECURITY</span></div>
+        <div className="certification-top">
+          <span className="certification-number">02</span>
+          <span className="certification-type">PROGRAMMING</span>
+        </div>
         <div className="certification-content">
-          <h3>Introduction to Cybersecurity</h3>
-          <p className="certification-provider">Cisco Networking Academy</p>
-          <p className="certification-detail">Cybersecurity fundamentals and digital security</p>
+          <h3>Python Programming</h3>
+          <p className="certification-provider">iamneo</p>
+          <p className="certification-detail">Course completed · June 2026</p>
         </div>
-        <a className="certification-link" href="/certificates/cisco-cybersecurity.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a>
+        <a className="certification-link" href="/yash-portfolio/certificates/iamneo-python.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
       </article>
 
       <article className="certification-card">
-        <div className="certification-top"><span className="certification-number">05</span><span className="certification-type">WEB</span></div>
+        <div className="certification-top">
+          <span className="certification-number">03</span>
+          <span className="certification-type">LINUX</span>
+        </div>
+        <div className="certification-content">
+          <h3>Getting Started with Linux Fundamentals</h3>
+          <p className="certification-provider">Red Hat Training</p>
+          <p className="certification-detail">RH104 – RHA · Version 9.1 · September 2026</p>
+        </div>
+        <a className="certification-link" href="/yash-portfolio/certificates/red-hat-linux.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
+      </article>
+
+      <article className="certification-card">
+        <div className="certification-top">
+          <span className="certification-number">04</span>
+          <span className="certification-type">WEB DEVELOPMENT</span>
+        </div>
         <div className="certification-content">
           <h3>JavaScript</h3>
           <p className="certification-provider">Infosys Springboard</p>
-          <p className="certification-detail">JavaScript programming and web development</p>
+          <p className="certification-detail">Course completion · November 2025</p>
         </div>
-        <a className="certification-link" href="/certificates/infosys-javascript.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a>
+        <a className="certification-link" href="/yash-portfolio/certificates/infosys-javascript.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
+      </article>
+
+      <article className="certification-card">
+        <div className="certification-top">
+          <span className="certification-number">05</span>
+          <span className="certification-type">PYTHON</span>
+        </div>
+        <div className="certification-content">
+          <h3>Programming Fundamentals using Python – Part 2</h3>
+          <p className="certification-provider">Infosys Springboard</p>
+          <p className="certification-detail">Course completion · February 2026</p>
+        </div>
+        <a className="certification-link" href="/yash-portfolio/certificates/infosys-python-fundamentals.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
+      </article>
+
+      <article className="certification-card">
+        <div className="certification-top">
+          <span className="certification-number">06</span>
+          <span className="certification-type">CYBERSECURITY</span>
+        </div>
+        <div className="certification-content">
+          <h3>Introduction to Cybersecurity</h3>
+          <p className="certification-provider">Cisco Networking Academy · NIET</p>
+          <p className="certification-detail">Completed · February 2026</p>
+        </div>
+        <a className="certification-link" href="/yash-portfolio/certificates/cisco-cybersecurity.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
+      </article>
+
+      <article className="certification-card">
+        <div className="certification-top">
+          <span className="certification-number">07</span>
+          <span className="certification-type">GENERATIVE AI</span>
+        </div>
+        <div className="certification-content">
+          <h3>Master Generative AI & Generative AI Tools (ChatGPT & more)</h3>
+          <p className="certification-provider">Udemy</p>
+          <p className="certification-detail">14.5 hours · March 2026</p>
+        </div>
+        <a className="certification-link" href="/yash-portfolio/certificates/udemy-generative-ai.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
+      </article>
+
+      <article className="certification-card">
+        <div className="certification-top">
+          <span className="certification-number">08</span>
+          <span className="certification-type">COMMUNICATION</span>
+        </div>
+        <div className="certification-content">
+          <h3>The Complete English Grammar Course – Perfect Your English</h3>
+          <p className="certification-provider">Udemy</p>
+          <p className="certification-detail">42.5 hours · March 2026</p>
+        </div>
+        <a className="certification-link" href="/yash-portfolio/certificates/udemy-english-grammar.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
       </article>
     </div>
-    <p className="certifications-note">To make a certificate link work, add the matching PDF file to the public/certificates folder.</p>
   </div>
 </section>
-
 <section id="education" className="section education-section">
   <div className="section-container">
 
