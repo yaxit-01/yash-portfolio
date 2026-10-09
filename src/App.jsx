@@ -758,129 +758,69 @@ function App() {
 </section>
         <section id="certifications" className="section certifications-section">
   <div className="section-container">
-
     <div className="certifications-header">
       <div>
         <p className="section-label">CERTIFICATIONS</p>
-
-        <h2>
-          Learning that
-          <span> compounds.</span>
-        </h2>
+        <h2>Learning that<span> compounds.</span></h2>
       </div>
-
-      <p>
-        Certifications that reflect my continuous learning across
-        programming, cybersecurity, Linux, and computer science.
-      </p>
+      <p>Certifications that reflect my continuous learning across programming, cybersecurity, Linux, and computer science.</p>
     </div>
 
     <div className="certifications-grid">
-
-      {/* 01 */}
       <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">01</span>
-          <span className="certification-type">LINUX</span>
-        </div>
-
+        <div className="certification-top"><span className="certification-number">01</span><span className="certification-type">LINUX</span></div>
         <div className="certification-content">
           <h3>Getting Started with Linux Fundamentals</h3>
-
-          <p className="certification-provider">
-            Red Hat Training
-          </p>
-
-          <p className="certification-detail">
-            RH104 – RHA · Version 9.1
-          </p>
+          <p className="certification-provider">Red Hat Training</p>
+          <p className="certification-detail">RH104 – RHA · Version 9.1</p>
         </div>
+        <a className="certification-link" href="/certificates/red-hat-linux.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a>
       </article>
 
-      {/* 02 */}
       <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">02</span>
-          <span className="certification-type">PROGRAMMING</span>
-        </div>
-
+        <div className="certification-top"><span className="certification-number">02</span><span className="certification-type">PROGRAMMING</span></div>
         <div className="certification-content">
           <h3>Python Programming</h3>
-
-          <p className="certification-provider">
-            iamneo
-          </p>
-
-          <p className="certification-detail">
-            Programming fundamentals and Python development
-          </p>
+          <p className="certification-provider">iamneo</p>
+          <p className="certification-detail">Programming fundamentals and Python development</p>
         </div>
+        <a className="certification-link" href="/certificates/iamneo-python.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a>
       </article>
 
-      {/* 03 */}
       <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">03</span>
-          <span className="certification-type">DSA</span>
-        </div>
-
+        <div className="certification-top"><span className="certification-number">03</span><span className="certification-type">DSA</span></div>
         <div className="certification-content">
           <h3>Data Structures and Algorithms – I</h3>
-
-          <p className="certification-provider">
-            iamneo
-          </p>
-
-          <p className="certification-detail">
-            Data structures, algorithms, and problem solving
-          </p>
+          <p className="certification-provider">iamneo</p>
+          <p className="certification-detail">Data structures, algorithms, and problem solving</p>
         </div>
+        <a className="certification-link" href="/certificates/iamneo-dsa.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a>
       </article>
 
-      {/* 04 */}
       <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">04</span>
-          <span className="certification-type">SECURITY</span>
-        </div>
-
+        <div className="certification-top"><span className="certification-number">04</span><span className="certification-type">SECURITY</span></div>
         <div className="certification-content">
           <h3>Introduction to Cybersecurity</h3>
-
-          <p className="certification-provider">
-            Cisco Networking Academy
-          </p>
-
-          <p className="certification-detail">
-            Cybersecurity fundamentals and digital security
-          </p>
+          <p className="certification-provider">Cisco Networking Academy</p>
+          <p className="certification-detail">Cybersecurity fundamentals and digital security</p>
         </div>
+        <a className="certification-link" href="/certificates/cisco-cybersecurity.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a>
       </article>
 
-      {/* 05 */}
       <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">05</span>
-          <span className="certification-type">WEB</span>
-        </div>
-
+        <div className="certification-top"><span className="certification-number">05</span><span className="certification-type">WEB</span></div>
         <div className="certification-content">
           <h3>JavaScript</h3>
-
-          <p className="certification-provider">
-            Infosys Springboard
-          </p>
-
-          <p className="certification-detail">
-            JavaScript programming and web development
-          </p>
+          <p className="certification-provider">Infosys Springboard</p>
+          <p className="certification-detail">JavaScript programming and web development</p>
         </div>
+        <a className="certification-link" href="/certificates/infosys-javascript.pdf" target="_blank" rel="noreferrer">View Certificate ↗</a>
       </article>
-
     </div>
-
+    <p className="certifications-note">To make a certificate link work, add the matching PDF file to the public/certificates folder.</p>
   </div>
 </section>
+
 <section id="education" className="section education-section">
   <div className="section-container">
 
@@ -1067,7 +1007,7 @@ function App() {
 
   </div>
 </section>
-      </main>f
+      </main>
     </>
   );
 }
