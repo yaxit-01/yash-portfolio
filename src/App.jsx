@@ -1,1064 +1,674 @@
+import { useState } from "react";
 import Navbar from "./components/Navbar";
+import CertificateModal from "./components/CertificateModal";
 import profileImage from "./assets/profile.png";
+import {
+  PERSONAL_INFO,
+  ABOUT_DATA,
+  SKILL_CATEGORIES,
+  PROJECTS_DATA,
+  HACKATHONS_DATA,
+  CERTIFICATES_DATA,
+  EDUCATION_DATA,
+} from "./data/portfolioData";
+import {
+  GitHubIcon,
+  LinkedInIcon,
+  MailIcon,
+  ExternalLinkIcon,
+  CodeIcon,
+  ArrowUpRightIcon,
+  ArrowUpIcon,
+  MapPinIcon,
+  CheckCircleIcon,
+} from "./components/Icons";
+
+// Calculate copyright year outside component to guarantee pure render
+const CURRENT_YEAR = new Date().getFullYear();
 
 function App() {
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = (e) => {
+    e.preventDefault();
+    navigator.clipboard.writeText(PERSONAL_INFO.email).then(() => {
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    });
+  };
+
+  const handleOpenCertificate = (cert) => {
+    const basePath = import.meta.env.BASE_URL.endsWith("/")
+      ? import.meta.env.BASE_URL
+      : `${import.meta.env.BASE_URL}/`;
+    setSelectedCertificate({
+      ...cert,
+      image: `${basePath}certificates/${cert.filename}`,
+    });
+  };
+
+  const handleScrollToTop = (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.location.hash) {
+      history.pushState(null, "", window.location.pathname);
+    }
+  };
+
   return (
     <>
       <Navbar />
 
-      <main>
-      <section className="hero">
-  <div className="hero-content">
+      <main id="top">
+        {/* =========================================================
+            HERO SECTION
+           ========================================================= */}
+        <section className="hero" aria-label="Introduction">
+          <div className="hero-content">
+            <div className="hero-text">
+              <div className="hero-badge">
+                <span className="status-dot" aria-hidden="true"></span>
+                <span>{PERSONAL_INFO.statusText}</span>
+              </div>
 
-    <div className="hero-text">
+              <p className="hero-tag">COMPUTER SCIENCE ENGINEERING STUDENT</p>
 
-      <div className="hero-badge">
-        <span className="status-dot"></span>
-        AVAILABLE FOR OPPORTUNITIES
-      </div>
+              <h1>
+                Hi, I'm <span className="hero-name">{PERSONAL_INFO.name}</span>
+              </h1>
 
-      <p className="hero-tag">
-        COMPUTER SCIENCE ENGINEERING STUDENT
-      </p>
+              <h2 className="hero-headline">{PERSONAL_INFO.headline}</h2>
 
-      <h1>
-        Hi, I'm{" "}
-        <span className="hero-name">
-          Yash Dixit
-        </span>
-      </h1>
+              <p className="hero-description">{PERSONAL_INFO.heroDescription}</p>
 
-      <h2>
-        Aspiring <span>Cloud & Software Engineer</span>
-      </h2>
+              <div className="hero-actions">
+                <a href="#projects" className="primary-button">
+                  <span>View Projects</span>
+                  <ArrowUpRightIcon size={16} />
+                </a>
 
-      <p className="hero-description">
-        I build practical software solutions with a focus on
-        backend development, cloud computing, DevOps, and
-        problem solving.
-      </p>
+                <a href="#contact" className="secondary-button">
+                  <span>Let's Connect</span>
+                </a>
 
-      <div className="hero-buttons">
-        <a href="#projects" className="primary-button">
-          View My Work →
-        </a>
+                <div className="hero-quick-socials" aria-label="Social Profiles">
+                  <a
+                    href={PERSONAL_INFO.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hero-social-link"
+                    aria-label="GitHub Profile"
+                  >
+                    <GitHubIcon size={18} />
+                  </a>
 
-        <a href="#contact" className="secondary-button">
-          Let's Connect
-        </a>
-      </div>
+                  <a
+                    href={PERSONAL_INFO.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hero-social-link"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <LinkedInIcon size={18} />
+                  </a>
+                </div>
+              </div>
 
-      <div className="hero-tech">
-        <span>Java</span>
-        <span>Python</span>
-        <span>React</span>
-        <span>Node.js</span>
-        <span>Docker</span>
-        <span>Linux</span>
-      </div>
+              <div className="hero-tech-strip">
+                <span className="hero-tech-label">CORE TOOLS:</span>
+                <div className="hero-tech-items">
+                  <span>Java</span>
+                  <span>Python</span>
+                  <span>React.js</span>
+                  <span>Node.js</span>
+                  <span>Docker</span>
+                  <span>PostgreSQL</span>
+                  <span>Linux</span>
+                </div>
+              </div>
+            </div>
 
-    </div>
-
-    <div className="hero-image-container">
-      <div className="hero-image-glow"></div>
-
-      <div className="hero-image-frame">
-        <img
-          src={profileImage}
-          alt="Yash Dixit"
-          className="hero-image"
-        />
-      </div>
-
-      <div className="hero-image-decoration"></div>
-    </div>
-
-  </div>
-
-  <div className="hero-grid"></div>
-</section>
-
-        <section id="about" className="section about-section">
-  <div className="section-container">
-
-    <div className="about-header">
-      <p className="section-label">ABOUT ME</p>
-
-      <h2>
-        Building, Learning
-        <span> & Growing.</span>
-      </h2>
-    </div>
-
-    <div className="about-grid">
-
-      <div className="about-content">
-        <p>
-          I'm Yash Dixit, a Computer Science and Engineering student at
-          Noida Institute of Engineering and Technology (NIET), Greater
-          Noida, with a strong interest in cloud computing, software
-          development, backend engineering, and problem solving.
-        </p>
-
-        <p>
-          I enjoy turning ideas into practical applications and learning
-          by building real-world projects. I've worked with technologies
-          including Java, Python, C/C++, JavaScript, React, Node.js,
-          MongoDB, PostgreSQL, Docker, Git, and Linux.
-        </p>
-
-        <p>
-          Currently, I'm focused on strengthening my DSA, backend,
-          cloud, and DevOps skills while working toward my goal of
-          becoming a Cloud Engineer.
-        </p>
-      </div>
-
-      <div className="focus-card">
-
-        <div className="focus-card-header">
-          <span className="focus-dot"></span>
-          <span>CURRENT FOCUS</span>
-        </div>
-
-        <div className="focus-list">
-
-          <div className="focus-item">
-            <span className="focus-icon">☁</span>
-
-            <div>
-              <h3>Cloud Computing</h3>
-              <p>Learning cloud infrastructure and services</p>
+            <div className="hero-image-container">
+              <div className="hero-image-glow" aria-hidden="true"></div>
+              <div className="hero-image-frame">
+                <img
+                  src={profileImage}
+                  alt="Portrait of Yash Dixit"
+                  className="hero-image"
+                  loading="eager"
+                  fetchPriority="high"
+                />
+              </div>
+              <div className="hero-image-decoration" aria-hidden="true"></div>
             </div>
           </div>
 
-          <div className="focus-item">
-            <span className="focus-icon">⚙</span>
+          <div className="hero-grid" aria-hidden="true"></div>
+        </section>
 
-            <div>
-              <h3>Backend Engineering</h3>
-              <p>Building APIs and scalable backend systems</p>
+        {/* =========================================================
+            ABOUT SECTION
+           ========================================================= */}
+        <section id="about" className="section about-section" aria-label="About Me">
+          <div className="section-container">
+            <div className="section-header">
+              <p className="section-label">ABOUT ME</p>
+              <h2>
+                Building, Learning <span>& Growing.</span>
+              </h2>
+            </div>
+
+            <div className="about-grid">
+              <div className="about-content">
+                {ABOUT_DATA.paragraphs.map((p, index) => (
+                  <p key={index}>{p}</p>
+                ))}
+              </div>
+
+              <div className="focus-card">
+                <div className="focus-card-header">
+                  <span className="focus-dot" aria-hidden="true"></span>
+                  <span>CURRENT ENGINEERING FOCUS</span>
+                </div>
+
+                <div className="focus-list">
+                  {ABOUT_DATA.focusAreas.map((area, index) => (
+                    <div key={index} className="focus-item">
+                      <div className="focus-icon-wrap" aria-hidden="true">
+                        <span className="focus-icon-bullet">◆</span>
+                      </div>
+                      <div>
+                        <h3>{area.title}</h3>
+                        <p>{area.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="about-stats" aria-label="Quick Highlights">
+              {ABOUT_DATA.stats.map((stat, index) => (
+                <div key={index} className="about-stat">
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
             </div>
           </div>
+        </section>
 
-          <div className="focus-item">
-            <span className="focus-icon">🚀</span>
-
-            <div>
-              <h3>DevOps</h3>
-              <p>Docker, Linux, automation and deployment</p>
-            </div>
-          </div>
-
-          <div className="focus-item">
-            <span className="focus-icon">🧩</span>
-
-            <div>
-              <h3>Problem Solving</h3>
-              <p>DSA, algorithms and logical thinking</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-    <div className="about-stats">
-
-      <div className="about-stat">
-        <strong>2nd</strong>
-        <span>Year</span>
-      </div>
-
-      <div className="about-stat">
-        <strong>3rd</strong>
-        <span>Semester</span>
-      </div>
-
-      <div className="about-stat">
-        <strong>CS</strong>
-        <span>Engineering</span>
-      </div>
-
-      <div className="about-stat">
-        <strong>∞</strong>
-        <span>Learning</span>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-       <section id="skills" className="section skills-section">
-  <div className="section-container">
-
-    <div className="skills-header">
-      <div>
-        <p className="section-label">TECHNICAL SKILLS</p>
-
-        <h2>
-          Tools I use to
-          <span> build.</span>
-        </h2>
-      </div>
-
-      <p>
-        A growing technical toolkit built through projects,
-        hackathons, coursework, and continuous practice.
-      </p>
-    </div>
-
-    <div className="skills-grid">
-
-      {/* Programming */}
-      <div className="skill-card">
-        <div className="skill-card-top">
-          <span className="skill-number">01</span>
-          <span className="skill-category">PROGRAMMING</span>
-        </div>
-
-        <h3>Programming Languages</h3>
-
-        <div className="skill-tags">
-          <span>C/C++</span>
-          <span>Java</span>
-          <span>Python</span>
-          <span>JavaScript</span>
-        </div>
-      </div>
-
-      {/* Frontend */}
-      <div className="skill-card">
-        <div className="skill-card-top">
-          <span className="skill-number">02</span>
-          <span className="skill-category">FRONTEND</span>
-        </div>
-
-        <h3>Web Development</h3>
-
-        <div className="skill-tags">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JavaScript</span>
-          <span>React.js</span>
-        </div>
-      </div>
-
-      {/* Backend */}
-      <div className="skill-card">
-        <div className="skill-card-top">
-          <span className="skill-number">03</span>
-          <span className="skill-category">BACKEND</span>
-        </div>
-
-        <h3>Backend Engineering</h3>
-
-        <div className="skill-tags">
-          <span>Node.js</span>
-          <span>Express.js</span>
-          <span>FastAPI</span>
-          <span>REST APIs</span>
-        </div>
-      </div>
-
-      {/* Database */}
-      <div className="skill-card">
-        <div className="skill-card-top">
-          <span className="skill-number">04</span>
-          <span className="skill-category">DATABASE</span>
-        </div>
-
-        <h3>Data & Storage</h3>
-
-        <div className="skill-tags">
-          <span>MongoDB</span>
-          <span>PostgreSQL</span>
-          <span>Prisma</span>
-        </div>
-      </div>
-
-      {/* Cloud */}
-      <div className="skill-card skill-card-featured">
-        <div className="skill-card-top">
-          <span className="skill-number">05</span>
-          <span className="skill-category">CLOUD & DEVOPS</span>
-        </div>
-
-        <h3>Cloud & Infrastructure</h3>
-
-        <div className="skill-tags">
-          <span>Linux</span>
-          <span>Docker</span>
-          <span>Git & GitHub</span>
-          <span>Cloud Computing</span>
-        </div>
-      </div>
-
-      {/* Core CS */}
-      <div className="skill-card">
-        <div className="skill-card-top">
-          <span className="skill-number">06</span>
-          <span className="skill-category">CORE CS</span>
-        </div>
-
-        <h3>Computer Science</h3>
-
-        <div className="skill-tags">
-          <span>DSA</span>
-          <span>OOP</span>
-          <span>DBMS</span>
-          <span>Computer Networks</span>
-          <span>Operating Systems</span>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-       <section id="projects" className="section projects-section">
-  <div className="section-container">
-
-    <div className="projects-header">
-      <div>
-        <p className="section-label">SELECTED PROJECTS</p>
-
-        <h2>
-          Things I've <span>built.</span>
-        </h2>
-      </div>
-
-      <p>
-        Practical projects built through development,
-        hackathons, experimentation, and continuous learning.
-      </p>
-    </div>
-
-    <div className="projects-list">
-
-      {/* PROJECT 01 */}
-      <article className="project-card">
-
-        <div className="project-number">
-          01
-        </div>
-
-        <div className="project-main">
-
-          <div className="project-top">
-            <div>
-              <p className="project-type">
-                SMART INDIA HACKATHON
+        {/* =========================================================
+            SKILLS SECTION
+           ========================================================= */}
+        <section id="skills" className="section skills-section" aria-label="Technical Skills">
+          <div className="section-container">
+            <div className="section-header-split">
+              <div>
+                <p className="section-label">TECHNICAL SKILLS</p>
+                <h2>
+                  Tools I use to <span>build.</span>
+                </h2>
+              </div>
+              <p className="section-header-desc">
+                A verified technical toolkit built through hands-on development, hackathons, academic coursework, and continuous coding practice.
               </p>
-
-              <h3>KisanFlow 360</h3>
             </div>
 
-            <a
-              href="#"
-              className="project-arrow"
-              aria-label="KisanFlow 360 project"
-            >
-              ↗
-            </a>
+            <div className="skills-grid">
+              {SKILL_CATEGORIES.map((cat) => (
+                <article
+                  key={cat.number}
+                  className={`skill-card ${cat.isFeatured ? "skill-card-featured" : ""}`}
+                >
+                  <div className="skill-card-top">
+                    <span className="skill-number">{cat.number}</span>
+                    <span className="skill-category">{cat.category}</span>
+                  </div>
+
+                  <h3>{cat.title}</h3>
+
+                  <div className="skill-tags">
+                    {cat.skills.map((skill, index) => (
+                      <span key={index}>{skill}</span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
+        </section>
 
-          <p className="project-description">
-            A full-stack digital platform designed to streamline
-            agricultural procurement workflows and improve coordination
-            between farmers, procurement centers, and operational teams.
-          </p>
-
-          <div className="project-role">
-            <span>ROLE</span>
-            <strong>Full-Stack / System Developer</strong>
-          </div>
-
-          <div className="project-tech">
-            <span>React.js</span>
-            <span>Node.js</span>
-            <span>Python</span>
-            <span>FastAPI</span>
-            <span>PostgreSQL</span>
-            <span>Docker</span>
-            <span>Redis</span>
-          </div>
-
-        </div>
-
-      </article>
-
-
-      {/* PROJECT 02 */}
-      <article className="project-card">
-
-        <div className="project-number">
-          02
-        </div>
-
-        <div className="project-main">
-
-          <div className="project-top">
-            <div>
-              <p className="project-type">
-                INNOV8 BATTLE ARENA · IIT DELHI
+        {/* =========================================================
+            PROJECTS SECTION (Highest Priority)
+           ========================================================= */}
+        <section id="projects" className="section projects-section" aria-label="Featured Projects">
+          <div className="section-container">
+            <div className="section-header-split">
+              <div>
+                <p className="section-label">SELECTED PROJECTS</p>
+                <h2>
+                  Things I've <span>built.</span>
+                </h2>
+              </div>
+              <p className="section-header-desc">
+                Production-grade applications, hackathon innovations, and developer tools built with clean architecture, modern frameworks, and practical problem solving.
               </p>
-
-              <h3>Battle Arena Agents</h3>
             </div>
 
-            <a
-              href="#"
-              className="project-arrow"
-              aria-label="Battle Arena Agents project"
-            >
-              ↗
-            </a>
+            <div className="projects-list">
+              {PROJECTS_DATA.map((project) => (
+                <article key={project.id} className="project-card">
+                  <div className="project-number">{project.id}</div>
+
+                  <div className="project-main">
+                    <div className="project-top">
+                      <div>
+                        <span className="project-badge">{project.badge}</span>
+                        <h3>{project.name}</h3>
+                        <p className="project-tagline">{project.tagline}</p>
+                      </div>
+
+                      <div className="project-top-actions">
+                        {project.liveUrl && (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-arrow-btn"
+                            aria-label={`Open live demo of ${project.name}`}
+                          >
+                            <ArrowUpRightIcon size={18} />
+                          </a>
+                        )}
+                        {project.githubUrl && !project.liveUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-arrow-btn"
+                            aria-label={`View ${project.name} on GitHub`}
+                          >
+                            <CodeIcon size={18} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="project-problem-box">
+                      <span className="project-label-sub">THE PROBLEM</span>
+                      <p>{project.problem}</p>
+                    </div>
+
+                    <p className="project-description">{project.description}</p>
+
+                    <div className="project-features-block">
+                      <span className="project-label-sub">KEY ENGINEERING HIGHLIGHTS</span>
+                      <ul className="project-features-list">
+                        {project.features.map((feat, idx) => (
+                          <li key={idx}>
+                            <CheckCircleIcon size={15} className="feat-check-icon" />
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="project-meta-row">
+                      <div className="project-role-info">
+                        <span>ROLE</span>
+                        <strong>{project.role}</strong>
+                      </div>
+                    </div>
+
+                    <div className="project-tech">
+                      {project.technologies.map((tech, idx) => (
+                        <span key={idx}>{tech}</span>
+                      ))}
+                    </div>
+
+                    <div className="project-actions">
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-btn-primary"
+                        >
+                          <span>Live Demo</span>
+                          <ExternalLinkIcon size={14} />
+                        </a>
+                      )}
+
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-btn-secondary"
+                        >
+                          <GitHubIcon size={15} />
+                          <span>View Code</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
+        </section>
 
-          <p className="project-description">
-            An autonomous candidate-selection system developed with
-            Team Pixel Minds. The system processes job requisitions,
-            evaluates candidate information, and automates matching
-            and assessment workflows.
-          </p>
-
-          <div className="project-role">
-            <span>ROLE</span>
-            <strong>Full-Stack / AI Agent Developer</strong>
-          </div>
-
-          <div className="project-tech">
-            <span>Python</span>
-            <span>REST APIs</span>
-            <span>Autonomous Agents</span>
-            <span>JSON</span>
-            <span>Pytest</span>
-            <span>Git</span>
-          </div>
-
-        </div>
-
-      </article>
-<article className="project-card">
-  <div className="project-number">03</div>
-
-  <div className="project-main">
-    <div className="project-top">
-      <div>
-        <p className="project-type">PAYTM HACKATHON</p>
-        <h3>Paytm GrowthPilot</h3>
-      </div>
-
-      <a
-        href="https://github.com/yaxit-01/paytm-growthpilot"
-        target="_blank"
-        rel="noreferrer"
-        className="project-arrow"
-        aria-label="View Paytm GrowthPilot on GitHub"
-      >
-        ↗
-      </a>
-    </div>
-
-    <p className="project-description">
-      A hackathon project developed as part of the Paytm Hackathon,
-      focused on building a practical technology solution around the
-      GrowthPilot concept.
-    </p>
-
-    <div className="project-role">
-      <span>ROLE</span>
-      <strong>Developer</strong>
-    </div>
-
-    <div className="project-tech">
-      <span>Web Development</span>
-      <span>React</span>
-      <span>JavaScript</span>
-      <span>Vercel</span>
-    </div>
-
-    <div className="project-links">
-      <a
-        href="https://paytm-growthpilot.vercel.app/"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Live Demo ↗
-      </a>
-
-      <a
-        href="https://github.com/yaxit-01/paytm-growthpilot"
-        target="_blank"
-        rel="noreferrer"
-      >
-        GitHub ↗
-      </a>
-    </div>
-  </div>
-</article>
-
-      {/* PROJECT 04 */}
-      <article className="project-card">
-
-        <div className="project-number">
-          04
-        </div>
-
-        <div className="project-main">
-
-          <div className="project-top">
-            <div>
-              <p className="project-type">
-                PYTHON DESKTOP APPLICATION
+        {/* =========================================================
+            HACKATHONS SECTION
+           ========================================================= */}
+        <section id="hackathons" className="section hackathons-section" aria-label="Hackathons and Collaborative Experience">
+          <div className="section-container">
+            <div className="section-header-split">
+              <div>
+                <p className="section-label">HACKATHONS & EXPERIENCE</p>
+                <h2>
+                  Built under <span>pressure.</span>
+                </h2>
+              </div>
+              <p className="section-header-desc">
+                Fast-paced hackathons and team competitions where I designed, built, and shipped working solutions under real-world constraints.
               </p>
-
-              <h3>Smart Hospital Management System</h3>
             </div>
 
-            <a
-              href="https://github.com/yaxit-01/smart_hospital_management_system"
-              target="_blank"
-              rel="noreferrer"
-              className="project-arrow"
-              aria-label="Smart Hospital Management System project"
-            >
-              ↗
-            </a>
+            <div className="hackathons-list">
+              {HACKATHONS_DATA.map((hackathon) => (
+                <article key={hackathon.id} className="hackathon-card">
+                  <div className="hackathon-index">{hackathon.id}</div>
+
+                  <div className="hackathon-content">
+                    <div className="hackathon-heading">
+                      <div>
+                        <p className="hackathon-label">{hackathon.event}</p>
+                        <h3>{hackathon.projectName}</h3>
+                      </div>
+                      <span className="hackathon-badge">{hackathon.badge}</span>
+                    </div>
+
+                    <p className="hackathon-description">{hackathon.description}</p>
+
+                    <div className="hackathon-details">
+                      <div>
+                        <span>TEAM / ROLE</span>
+                        <strong>{hackathon.team}</strong>
+                      </div>
+
+                      <div>
+                        <span>CONTRIBUTION</span>
+                        <strong>{hackathon.contribution}</strong>
+                      </div>
+                    </div>
+
+                    <div className="hackathon-tech">
+                      {hackathon.technologies.map((t, i) => (
+                        <span key={i}>{t}</span>
+                      ))}
+                    </div>
+
+                    {(hackathon.liveUrl || hackathon.githubUrl) && (
+                      <div className="hackathon-links">
+                        {hackathon.liveUrl && (
+                          <a
+                            href={hackathon.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hackathon-link-btn"
+                          >
+                            <span>Live Demo</span>
+                            <ArrowUpRightIcon size={14} />
+                          </a>
+                        )}
+                        {hackathon.githubUrl && (
+                          <a
+                            href={hackathon.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hackathon-link-btn"
+                          >
+                            <GitHubIcon size={14} />
+                            <span>GitHub</span>
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
+        </section>
 
-          <p className="project-description">
-            A Python-based desktop application focused on organizing
-            hospital management workflows and providing a structured
-            interface for managing healthcare-related information.
-          </p>
-
-          <div className="project-role">
-            <span>ROLE</span>
-            <strong>Developer</strong>
-          </div>
-
-          <div className="project-tech">
-            <span>Python</span>
-            <span>Desktop Application</span>
-            <span>GUI</span>
-            <span>Database</span>
-          </div>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </div>
-</section>
-       
-<section id="hackathons" className="section hackathons-section">
-  <div className="section-container">
-
-    <div className="hackathons-header">
-      <div>
-        <p className="section-label">HACKATHONS & EXPERIENCE</p>
-
-        <h2>
-          Built under
-          <span> pressure.</span>
-        </h2>
-      </div>
-
-      <p>
-        Experiences where I collaborated with a team,
-        solved technical problems, and built working solutions
-        under real-world constraints.
-      </p>
-    </div>
-
-    <div className="hackathons-list">
-
-      {/* INNOV8 */}
-      <article className="hackathon-card">
-
-        <div className="hackathon-index">
-          01
-        </div>
-
-        <div className="hackathon-content">
-
-          <div className="hackathon-heading">
-            <div>
-              <p className="hackathon-label">
-                IIT DELHI
+        {/* =========================================================
+            CERTIFICATIONS SECTION
+           ========================================================= */}
+        <section id="certifications" className="section certifications-section" aria-label="Certifications">
+          <div className="section-container">
+            <div className="section-header-split">
+              <div>
+                <p className="section-label">CERTIFICATIONS</p>
+                <h2>
+                  Learning that <span>compounds.</span>
+                </h2>
+              </div>
+              <p className="section-header-desc">
+                Verified courses and certifications across Data Structures & Algorithms, Linux system administration, cybersecurity, web engineering, and generative AI.
               </p>
-
-              <h3>Innov8 Battle Arena</h3>
             </div>
 
-            <span className="hackathon-badge">
-              TEAM PIXEL MINDS
-            </span>
-          </div>
+            <div className="certifications-grid">
+              {CERTIFICATES_DATA.map((cert) => (
+                <article key={cert.id} className="certification-card">
+                  <div className="certification-top">
+                    <span className="certification-number">{cert.id}</span>
+                    <span className="certification-type">{cert.type}</span>
+                  </div>
 
-          <p className="hackathon-description">
-            Participated in Innov8 Battle Arena and worked with
-            Team Pixel Minds on an autonomous candidate-selection
-            system. The project focused on processing job
-            requisitions, evaluating candidates, and automating
-            candidate matching and assessment workflows.
-          </p>
+                  <div className="certification-content">
+                    <h3>{cert.title}</h3>
+                    <p className="certification-provider">{cert.provider}</p>
+                    <p className="certification-detail">{cert.date}</p>
+                  </div>
 
-          <div className="hackathon-details">
-
-            <div>
-              <span>ROLE</span>
-              <strong>Full-Stack / AI Agent Developer</strong>
+                  <div className="certification-card-action">
+                    <button
+                      type="button"
+                      className="certification-button"
+                      onClick={() => handleOpenCertificate(cert)}
+                      aria-label={`View certificate for ${cert.title}`}
+                    >
+                      <span>View Certificate</span>
+                      <ArrowUpRightIcon size={14} />
+                    </button>
+                  </div>
+                </article>
+              ))}
             </div>
-
-            <div>
-              <span>FOCUS</span>
-              <strong>Autonomous Agents & Candidate Evaluation</strong>
-            </div>
-
           </div>
+        </section>
 
-          <div className="hackathon-tech">
-            <span>Python</span>
-            <span>REST APIs</span>
-            <span>JSON</span>
-            <span>AI Agents</span>
-            <span>Pytest</span>
-          </div>
-
-        </div>
-
-      </article>
-
-
-      {/* SIH */}
-      <article className="hackathon-card">
-
-        <div className="hackathon-index">
-          02
-        </div>
-
-        <div className="hackathon-content">
-
-          <div className="hackathon-heading">
-            <div>
-              <p className="hackathon-label">
-                SMART INDIA HACKATHON
+        {/* =========================================================
+            EDUCATION SECTION
+           ========================================================= */}
+        <section id="education" className="section education-section" aria-label="Education">
+          <div className="section-container">
+            <div className="section-header-split">
+              <div>
+                <p className="section-label">ACADEMIC FOUNDATION</p>
+                <h2>
+                  Where I'm <span>building foundations.</span>
+                </h2>
+              </div>
+              <p className="section-header-desc">
+                My academic journey is centered on mastering computer science fundamentals and applying theory to practical software systems.
               </p>
-
-              <h3>KisanFlow 360</h3>
             </div>
 
-            <span className="hackathon-badge">
-              FULL-STACK DEVELOPMENT
-            </span>
+            <div className="education-card">
+              <div className="education-number">01</div>
+
+              <div className="education-main">
+                <div className="education-top">
+                  <div>
+                    <p className="education-degree-label">UNDERGRADUATE PROGRAM</p>
+                    <h3>{EDUCATION_DATA.degree}</h3>
+                    <p className="education-major">{EDUCATION_DATA.major}</p>
+                  </div>
+
+                  <span className="education-period">{EDUCATION_DATA.period}</span>
+                </div>
+
+                <div className="education-divider" aria-hidden="true"></div>
+
+                <div className="education-info">
+                  <div className="education-info-item">
+                    <span>INSTITUTION</span>
+                    <strong>{EDUCATION_DATA.institution}</strong>
+                  </div>
+
+                  <div className="education-info-item">
+                    <span>LOCATION</span>
+                    <strong>{EDUCATION_DATA.location}</strong>
+                  </div>
+
+                  <div className="education-info-item">
+                    <span>PROGRAM</span>
+                    <strong>{EDUCATION_DATA.program}</strong>
+                  </div>
+
+                  <div className="education-info-item">
+                    <span>CURRENT STATUS</span>
+                    <strong>{EDUCATION_DATA.currentStatus}</strong>
+                  </div>
+                </div>
+
+                <div className="education-coursework">
+                  <span className="education-coursework-label">CORE RELEVANT COURSEWORK:</span>
+                  <div className="education-tags">
+                    {EDUCATION_DATA.coursework.map((course, idx) => (
+                      <span key={idx}>{course}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <p className="hackathon-description">
-            Worked on KisanFlow 360 as a full-stack/system
-            developer, contributing across the application stack
-            and helping build a digital workflow for agricultural
-            procurement operations.
-          </p>
+        {/* =========================================================
+            CONTACT SECTION
+           ========================================================= */}
+        <section id="contact" className="section contact-section" aria-label="Contact">
+          <div className="section-container">
+            <div className="contact-wrapper">
+              <div className="contact-main">
+                <p className="section-label">GET IN TOUCH</p>
+                <h2>
+                  Let's build <span>something.</span>
+                </h2>
 
-          <div className="hackathon-details">
+                <p className="contact-description">
+                  I'm actively seeking software engineering internships, collaborative development opportunities, and hackathon teams. Whether you have an open opportunity or an interesting project idea, let's talk.
+                </p>
 
-            <div>
-              <span>ROLE</span>
-              <strong>Full-Stack / System Developer</strong>
+                <div className="contact-email-row">
+                  <a
+                    href={`mailto:${PERSONAL_INFO.email}`}
+                    className="contact-email"
+                    aria-label={`Send email to ${PERSONAL_INFO.email}`}
+                  >
+                    <MailIcon size={20} />
+                    <span>{PERSONAL_INFO.email}</span>
+                    <ArrowUpRightIcon size={18} className="contact-arrow" />
+                  </a>
+
+                  <button
+                    type="button"
+                    className="copy-email-btn"
+                    onClick={handleCopyEmail}
+                    aria-label="Copy email address to clipboard"
+                  >
+                    {copiedEmail ? "Copied!" : "Copy"}
+                  </button>
+                </div>
+              </div>
+
+              <div className="contact-links" aria-label="Contact Destinations">
+                <a
+                  href={PERSONAL_INFO.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-link"
+                >
+                  <div className="contact-link-content">
+                    <span className="contact-link-label">GITHUB</span>
+                    <strong>yaxit-01</strong>
+                  </div>
+                  <div className="contact-link-icon">
+                    <GitHubIcon size={20} />
+                    <ArrowUpRightIcon size={16} />
+                  </div>
+                </a>
+
+                <a
+                  href={PERSONAL_INFO.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-link"
+                >
+                  <div className="contact-link-content">
+                    <span className="contact-link-label">LINKEDIN</span>
+                    <strong>Yash Dixit</strong>
+                  </div>
+                  <div className="contact-link-icon">
+                    <LinkedInIcon size={20} />
+                    <ArrowUpRightIcon size={16} />
+                  </div>
+                </a>
+
+                <div className="contact-link contact-location">
+                  <div className="contact-link-content">
+                    <span className="contact-link-label">LOCATION</span>
+                    <strong>{PERSONAL_INFO.location}</strong>
+                  </div>
+                  <div className="contact-link-icon">
+                    <MapPinIcon size={20} />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div>
-              <span>FOCUS</span>
-              <strong>Backend, APIs & System Integration</strong>
-            </div>
+            <footer className="portfolio-footer">
+              <div className="footer-logo">
+                YASH<span>.</span>
+              </div>
 
+              <p>© {CURRENT_YEAR} Yash Dixit. All rights reserved.</p>
+
+              <a
+                href="#top"
+                className="back-to-top"
+                onClick={handleScrollToTop}
+                aria-label="Back to top of page"
+              >
+                <span>Back to top</span>
+                <ArrowUpIcon size={14} />
+              </a>
+            </footer>
           </div>
-
-          <div className="hackathon-tech">
-            <span>React.js</span>
-            <span>Node.js</span>
-            <span>Python</span>
-            <span>FastAPI</span>
-            <span>PostgreSQL</span>
-            <span>Docker</span>
-          </div>
-
-        </div>
-
-      </article>
-      <article className="hackathon-card">
-  <div className="hackathon-index">03</div>
-
-  <div className="hackathon-content">
-    <div className="hackathon-heading">
-      <div>
-        <p className="hackathon-label">PAYTM HACKATHON</p>
-        <h3>Paytm GrowthPilot</h3>
-      </div>
-
-      <span className="hackathon-badge">
-        HACKATHON PROJECT
-      </span>
-    </div>
-
-    <p className="hackathon-description">
-      Participated in a Paytm Hackathon and worked on GrowthPilot,
-      developing a practical technology solution as part of the
-      hackathon challenge.
-    </p>
-
-    <div className="hackathon-details">
-      <div>
-        <span>ROLE</span>
-        <strong>Developer</strong>
-      </div>
-
-      <div>
-        <span>PROJECT</span>
-        <strong>Paytm GrowthPilot</strong>
-      </div>
-    </div>
-
-    <div className="hackathon-tech">
-      <span>Web Development</span>
-      <span>React</span>
-      <span>JavaScript</span>
-      <span>Vercel</span>
-    </div>
-
-    <div className="hackathon-links">
-      <a
-        href="https://paytm-growthpilot.vercel.app/"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Live Demo ↗
-      </a>
-
-      <a
-        href="https://github.com/yaxit-01/paytm-growthpilot"
-        target="_blank"
-        rel="noreferrer"
-      >
-        GitHub ↗
-      </a>
-    </div>
-  </div>
-</article>
-
-    </div>
-
-  </div>
-</section>
-        <section id="certifications" className="section certifications-section">
-  <div className="section-container">
-    <div className="certifications-header">
-      <div>
-        <p className="section-label">CERTIFICATIONS</p>
-        <h2>Learning that<span> compounds.</span></h2>
-      </div>
-      <p>Courses and certificates across programming, Linux, cybersecurity, web development, generative AI, and communication.</p>
-    </div>
-    <div className="certifications-grid">
-      <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">01</span>
-          <span className="certification-type">DSA</span>
-        </div>
-        <div className="certification-content">
-          <h3>Data Structures and Algorithms – I</h3>
-          <p className="certification-provider">iamneo</p>
-          <p className="certification-detail">Course completed · May 2026</p>
-        </div>
-        <a className="certification-link" href="/yash-portfolio/certificates/iamneo-dsa.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
-      </article>
-
-      <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">02</span>
-          <span className="certification-type">PROGRAMMING</span>
-        </div>
-        <div className="certification-content">
-          <h3>Python Programming</h3>
-          <p className="certification-provider">iamneo</p>
-          <p className="certification-detail">Course completed · June 2026</p>
-        </div>
-        <a className="certification-link" href="/yash-portfolio/certificates/iamneo-python.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
-      </article>
-
-      <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">03</span>
-          <span className="certification-type">LINUX</span>
-        </div>
-        <div className="certification-content">
-          <h3>Getting Started with Linux Fundamentals</h3>
-          <p className="certification-provider">Red Hat Training</p>
-          <p className="certification-detail">RH104 – RHA · Version 9.1 · September 2026</p>
-        </div>
-        <a className="certification-link" href="/yash-portfolio/certificates/red-hat-linux.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
-      </article>
-
-      <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">04</span>
-          <span className="certification-type">WEB DEVELOPMENT</span>
-        </div>
-        <div className="certification-content">
-          <h3>JavaScript</h3>
-          <p className="certification-provider">Infosys Springboard</p>
-          <p className="certification-detail">Course completion · November 2025</p>
-        </div>
-        <a className="certification-link" href="/yash-portfolio/certificates/infosys-javascript.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
-      </article>
-
-      <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">05</span>
-          <span className="certification-type">PYTHON</span>
-        </div>
-        <div className="certification-content">
-          <h3>Programming Fundamentals using Python – Part 2</h3>
-          <p className="certification-provider">Infosys Springboard</p>
-          <p className="certification-detail">Course completion · February 2026</p>
-        </div>
-        <a className="certification-link" href="/yash-portfolio/certificates/infosys-python-fundamentals.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
-      </article>
-
-      <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">06</span>
-          <span className="certification-type">CYBERSECURITY</span>
-        </div>
-        <div className="certification-content">
-          <h3>Introduction to Cybersecurity</h3>
-          <p className="certification-provider">Cisco Networking Academy · NIET</p>
-          <p className="certification-detail">Completed · February 2026</p>
-        </div>
-        <a className="certification-link" href="/yash-portfolio/certificates/cisco-cybersecurity.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
-      </article>
-
-      <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">07</span>
-          <span className="certification-type">GENERATIVE AI</span>
-        </div>
-        <div className="certification-content">
-          <h3>Master Generative AI & Generative AI Tools (ChatGPT & more)</h3>
-          <p className="certification-provider">Udemy</p>
-          <p className="certification-detail">14.5 hours · March 2026</p>
-        </div>
-        <a className="certification-link" href="/yash-portfolio/certificates/udemy-generative-ai.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
-      </article>
-
-      <article className="certification-card">
-        <div className="certification-top">
-          <span className="certification-number">08</span>
-          <span className="certification-type">COMMUNICATION</span>
-        </div>
-        <div className="certification-content">
-          <h3>The Complete English Grammar Course – Perfect Your English</h3>
-          <p className="certification-provider">Udemy</p>
-          <p className="certification-detail">42.5 hours · March 2026</p>
-        </div>
-        <a className="certification-link" href="/yash-portfolio/certificates/udemy-english-grammar.png" target="_blank" rel="noreferrer">View Certificate ↗</a>
-      </article>
-    </div>
-  </div>
-</section>
-<section id="education" className="section education-section">
-  <div className="section-container">
-
-    <div className="education-header">
-      <div>
-        <p className="section-label">EDUCATION</p>
-
-        <h2>
-          Where I’m
-          <span> building foundations.</span>
-        </h2>
-      </div>
-
-      <p>
-        My academic journey is focused on strengthening my
-        computer science fundamentals while building practical
-        technical skills through projects and hackathons.
-      </p>
-    </div>
-
-    <div className="education-card">
-
-      <div className="education-number">
-        01
-      </div>
-
-      <div className="education-main">
-
-        <div className="education-top">
-
-          <div>
-            <p className="education-degree-label">
-              BACHELOR OF TECHNOLOGY
-            </p>
-
-            <h3>
-              Computer Science & Engineering
-            </h3>
-          </div>
-
-          <span className="education-period">
-            2025 — PRESENT
-          </span>
-
-        </div>
-
-        <div className="education-divider"></div>
-
-        <div className="education-info">
-
-          <div className="education-info-item">
-            <span>INSTITUTE</span>
-
-            <strong>
-              Noida Institute of Engineering and Technology
-            </strong>
-          </div>
-
-          <div className="education-info-item">
-            <span>LOCATION</span>
-
-            <strong>
-              Greater Noida, India
-            </strong>
-          </div>
-
-          <div className="education-info-item">
-            <span>PROGRAM</span>
-
-            <strong>
-              B-Tech · Computer Science
-            </strong>
-          </div>
-
-          <div className="education-info-item">
-            <span>CURRENT STATUS</span>
-
-            <strong>
-              2nd Year · 3rd Semester
-            </strong>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
-        <section id="contact" className="section contact-section">
-  <div className="section-container">
-
-    <div className="contact-wrapper">
-
-      <div className="contact-main">
-
-        <p className="section-label">GET IN TOUCH</p>
-
-        <h2>
-          Let's build
-          <span> something.</span>
-        </h2>
-
-        <p className="contact-description">
-          I'm always open to discussing software projects,
-          hackathons, internships, collaboration opportunities,
-          and interesting technical ideas.
-        </p>
-
-        <a
-          href="mailto:dixityash2999@gmail.com"
-          className="contact-email"
-        >
-          <span>dixityash2999@gmail.com</span>
-          <span className="contact-arrow">↗</span>
-        </a>
-
-      </div>
-
-
-      <div className="contact-links">
-
-        <a
-          href="https://github.com/yaxit-01"
-          target="_blank"
-          rel="noreferrer"
-          className="contact-link"
-        >
-          <div>
-            <span className="contact-link-label">GITHUB</span>
-            <strong>yaxit-01</strong>
-          </div>
-
-          <span>↗</span>
-        </a>
-
-
-        <a
-          href="https://www.linkedin.com/in/yash-dixit-531922387/"
-          target="_blank"
-          rel="noreferrer"
-          className="contact-link"
-        >
-          <div>
-            <span className="contact-link-label">LINKEDIN</span>
-            <strong>Yash Dixit</strong>
-          </div>
-
-          <span>↗</span>
-        </a>
-
-
-        <div className="contact-link contact-location">
-
-          <div>
-            <span className="contact-link-label">LOCATION</span>
-            <strong>Greater Noida, India</strong>
-          </div>
-
-          <span>●</span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <footer className="portfolio-footer">
-
-      <div className="footer-logo">
-        YASH<span>.</span>
-      </div>
-
-      
-         <p>© {new Date().getFullYear()} Yash Dixit. All rights reserved.</p>
-
-      <a href="#">
-        Back to top ↑
-      </a>
-
-    </footer>
-
-  </div>
-</section>
+        </section>
       </main>
+
+      {/* Certificate Viewer Modal */}
+      <CertificateModal
+        certificate={selectedCertificate}
+        onClose={() => setSelectedCertificate(null)}
+      />
     </>
   );
 }
