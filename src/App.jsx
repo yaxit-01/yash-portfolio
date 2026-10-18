@@ -670,7 +670,8 @@ function App() {
         onClose={() => setSelectedCertificate(null)}
       />
     </>
-  );
+  ); 
+  
 }
 
 export default App;
