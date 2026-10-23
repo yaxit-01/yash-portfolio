@@ -11,10 +11,13 @@ const NAV_LINKS = [
   { name: "Contact", href: "#contact" },
 ];
 
-function Navbar() {
+function Navbar({ socials = {} } = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+
+  const githubUrl = socials.github || "https://github.com/yaxit-01";
+  const linkedinUrl = socials.linkedin || "https://www.linkedin.com/in/yash-dixit-531922387/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -116,7 +119,7 @@ function Navbar() {
         {/* Social Links */}
         <div className="nav-socials">
           <a
-            href="https://github.com/yaxit-01"
+            href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Profile"
@@ -127,7 +130,7 @@ function Navbar() {
           </a>
 
           <a
-            href="https://www.linkedin.com/in/yash-dixit-531922387/"
+            href={linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn Profile"
@@ -176,7 +179,7 @@ function Navbar() {
 
             <div className="mobile-socials">
               <a
-                href="https://github.com/yaxit-01"
+                href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mobile-social-link"
@@ -186,7 +189,7 @@ function Navbar() {
               </a>
 
               <a
-                href="https://www.linkedin.com/in/yash-dixit-531922387/"
+                href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mobile-social-link"

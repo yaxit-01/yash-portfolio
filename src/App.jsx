@@ -1,16 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import CertificateModal from "./components/CertificateModal";
+import ContactForm from "./components/ContactForm";
 import profileImage from "./assets/profile.png";
-import {
-  PERSONAL_INFO,
-  ABOUT_DATA,
-  SKILL_CATEGORIES,
-  PROJECTS_DATA,
-  HACKATHONS_DATA,
-  CERTIFICATES_DATA,
-  EDUCATION_DATA,
-} from "./data/portfolioData";
+import { usePortfolioData } from "./hooks/usePortfolioData";
+import { updateDocumentSeo } from "./utils/seo";
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -27,12 +21,29 @@ import {
 const CURRENT_YEAR = new Date().getFullYear();
 
 function App() {
+  const {
+    personalInfo,
+    aboutData,
+    skills,
+    projects,
+    hackathons,
+    certificates,
+    education,
+    seoSettings,
+  } = usePortfolioData();
+
+  useEffect(() => {
+    if (seoSettings) {
+      updateDocumentSeo(seoSettings);
+    }
+  }, [seoSettings]);
+
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleCopyEmail = (e) => {
     e.preventDefault();
-    navigator.clipboard.writeText(PERSONAL_INFO.email).then(() => {
+    navigator.clipboard.writeText(personalInfo.email).then(() => {
       setCopiedEmail(true);
       setTimeout(() => setCopiedEmail(false), 2500);
     });
@@ -42,9 +53,16 @@ function App() {
     const basePath = import.meta.env.BASE_URL.endsWith("/")
       ? import.meta.env.BASE_URL
       : `${import.meta.env.BASE_URL}/`;
+
+    // Support remote Supabase Storage URLs (imageUrl) or local asset fallback (filename)
+    const certificateImage =
+      cert.imageUrl && cert.imageUrl.startsWith("http")
+        ? cert.imageUrl
+        : `${basePath}certificates/${cert.filename}`;
+
     setSelectedCertificate({
       ...cert,
-      image: `${basePath}certificates/${cert.filename}`,
+      image: certificateImage,
     });
   };
 
@@ -58,7 +76,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar socials={{ github: personalInfo.github, linkedin: personalInfo.linkedin }} />
 
       <main id="top">
         {/* =========================================================
@@ -69,18 +87,18 @@ function App() {
             <div className="hero-text">
               <div className="hero-badge">
                 <span className="status-dot" aria-hidden="true"></span>
-                <span>{PERSONAL_INFO.statusText}</span>
+                <span>{personalInfo.statusText}</span>
               </div>
 
               <p className="hero-tag">COMPUTER SCIENCE ENGINEERING STUDENT</p>
 
               <h1>
-                Hi, I'm <span className="hero-name">{PERSONAL_INFO.name}</span>
+                Hi, I'm <span className="hero-name">{personalInfo.name}</span>
               </h1>
 
-              <h2 className="hero-headline">{PERSONAL_INFO.headline}</h2>
+              <h2 className="hero-headline">{personalInfo.headline}</h2>
 
-              <p className="hero-description">{PERSONAL_INFO.heroDescription}</p>
+              <p className="hero-description">{personalInfo.heroDescription}</p>
 
               <div className="hero-actions">
                 <a href="#projects" className="primary-button">
@@ -94,7 +112,7 @@ function App() {
 
                 <div className="hero-quick-socials" aria-label="Social Profiles">
                   <a
-                    href={PERSONAL_INFO.github}
+                    href={personalInfo.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hero-social-link"
@@ -104,7 +122,7 @@ function App() {
                   </a>
 
                   <a
-                    href={PERSONAL_INFO.linkedin}
+                    href={personalInfo.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hero-social-link"
@@ -118,13 +136,19 @@ function App() {
               <div className="hero-tech-strip">
                 <span className="hero-tech-label">CORE TOOLS:</span>
                 <div className="hero-tech-items">
-                  <span>Java</span>
-                  <span>Python</span>
-                  <span>React.js</span>
-                  <span>Node.js</span>
-                  <span>Docker</span>
-                  <span>PostgreSQL</span>
-                  <span>Linux</span>
+                  {(
+                    personalInfo.coreTools || [
+                      "Java",
+                      "Python",
+                      "React.js",
+                      "Node.js",
+                      "Docker",
+                      "PostgreSQL",
+                      "Linux",
+                    ]
+                  ).map((tool, idx) => (
+                    <span key={idx}>{tool}</span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -161,7 +185,7 @@ function App() {
 
             <div className="about-grid">
               <div className="about-content">
-                {ABOUT_DATA.paragraphs.map((p, index) => (
+                {aboutData.paragraphs.map((p, index) => (
                   <p key={index}>{p}</p>
                 ))}
               </div>
@@ -173,7 +197,7 @@ function App() {
                 </div>
 
                 <div className="focus-list">
-                  {ABOUT_DATA.focusAreas.map((area, index) => (
+                  {aboutData.focusAreas.map((area, index) => (
                     <div key={index} className="focus-item">
                       <div className="focus-icon-wrap" aria-hidden="true">
                         <span className="focus-icon-bullet">◆</span>
@@ -189,7 +213,7 @@ function App() {
             </div>
 
             <div className="about-stats" aria-label="Quick Highlights">
-              {ABOUT_DATA.stats.map((stat, index) => (
+              {aboutData.stats.map((stat, index) => (
                 <div key={index} className="about-stat">
                   <strong>{stat.value}</strong>
                   <span>{stat.label}</span>
@@ -217,7 +241,7 @@ function App() {
             </div>
 
             <div className="skills-grid">
-              {SKILL_CATEGORIES.map((cat) => (
+              {skills.map((cat) => (
                 <article
                   key={cat.number}
                   className={`skill-card ${cat.isFeatured ? "skill-card-featured" : ""}`}
@@ -258,7 +282,7 @@ function App() {
             </div>
 
             <div className="projects-list">
-              {PROJECTS_DATA.map((project) => (
+              {projects.map((project) => (
                 <article key={project.id} className="project-card">
                   <div className="project-number">{project.id}</div>
 
@@ -378,7 +402,7 @@ function App() {
             </div>
 
             <div className="hackathons-list">
-              {HACKATHONS_DATA.map((hackathon) => (
+              {hackathons.map((hackathon) => (
                 <article key={hackathon.id} className="hackathon-card">
                   <div className="hackathon-index">{hackathon.id}</div>
 
@@ -462,7 +486,7 @@ function App() {
             </div>
 
             <div className="certifications-grid">
-              {CERTIFICATES_DATA.map((cert) => (
+              {certificates.map((cert) => (
                 <article key={cert.id} className="certification-card">
                   <div className="certification-top">
                     <span className="certification-number">{cert.id}</span>
@@ -516,11 +540,11 @@ function App() {
                 <div className="education-top">
                   <div>
                     <p className="education-degree-label">UNDERGRADUATE PROGRAM</p>
-                    <h3>{EDUCATION_DATA.degree}</h3>
-                    <p className="education-major">{EDUCATION_DATA.major}</p>
+                    <h3>{education.degree}</h3>
+                    <p className="education-major">{education.major}</p>
                   </div>
 
-                  <span className="education-period">{EDUCATION_DATA.period}</span>
+                  <span className="education-period">{education.period}</span>
                 </div>
 
                 <div className="education-divider" aria-hidden="true"></div>
@@ -528,29 +552,29 @@ function App() {
                 <div className="education-info">
                   <div className="education-info-item">
                     <span>INSTITUTION</span>
-                    <strong>{EDUCATION_DATA.institution}</strong>
+                    <strong>{education.institution}</strong>
                   </div>
 
                   <div className="education-info-item">
                     <span>LOCATION</span>
-                    <strong>{EDUCATION_DATA.location}</strong>
+                    <strong>{education.location}</strong>
                   </div>
 
                   <div className="education-info-item">
                     <span>PROGRAM</span>
-                    <strong>{EDUCATION_DATA.program}</strong>
+                    <strong>{education.program}</strong>
                   </div>
 
                   <div className="education-info-item">
                     <span>CURRENT STATUS</span>
-                    <strong>{EDUCATION_DATA.currentStatus}</strong>
+                    <strong>{education.currentStatus}</strong>
                   </div>
                 </div>
 
                 <div className="education-coursework">
                   <span className="education-coursework-label">CORE RELEVANT COURSEWORK:</span>
                   <div className="education-tags">
-                    {EDUCATION_DATA.coursework.map((course, idx) => (
+                    {education.coursework.map((course, idx) => (
                       <span key={idx}>{course}</span>
                     ))}
                   </div>
@@ -578,12 +602,12 @@ function App() {
 
                 <div className="contact-email-row">
                   <a
-                    href={`mailto:${PERSONAL_INFO.email}`}
+                    href={`mailto:${personalInfo.email}`}
                     className="contact-email"
-                    aria-label={`Send email to ${PERSONAL_INFO.email}`}
+                    aria-label={`Send email to ${personalInfo.email}`}
                   >
                     <MailIcon size={20} />
-                    <span>{PERSONAL_INFO.email}</span>
+                    <span>{personalInfo.email}</span>
                     <ArrowUpRightIcon size={18} className="contact-arrow" />
                   </a>
 
@@ -596,11 +620,13 @@ function App() {
                     {copiedEmail ? "Copied!" : "Copy"}
                   </button>
                 </div>
+
+                <ContactForm />
               </div>
 
               <div className="contact-links" aria-label="Contact Destinations">
                 <a
-                  href={PERSONAL_INFO.github}
+                  href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="contact-link"
@@ -616,7 +642,7 @@ function App() {
                 </a>
 
                 <a
-                  href={PERSONAL_INFO.linkedin}
+                  href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="contact-link"
@@ -634,7 +660,7 @@ function App() {
                 <div className="contact-link contact-location">
                   <div className="contact-link-content">
                     <span className="contact-link-label">LOCATION</span>
-                    <strong>{PERSONAL_INFO.location}</strong>
+                    <strong>{personalInfo.location}</strong>
                   </div>
                   <div className="contact-link-icon">
                     <MapPinIcon size={20} />
@@ -670,7 +696,8 @@ function App() {
         onClose={() => setSelectedCertificate(null)}
       />
     </>
-  );
+  ); 
+  
 }
 
 export default App;

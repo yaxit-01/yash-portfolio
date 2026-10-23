@@ -313,3 +313,23 @@ export const EDUCATION_DATA = {
   ],
 };
 
+export const DEFAULT_SEO_SETTINGS = {
+  siteTitle: "Yash Dixit | Software Developer Portfolio",
+  metaDescription:
+    "Explore Yash Dixit's software development projects, technical skills, certifications, and experience in full-stack web development, backend engineering, and cloud technologies.",
+  keywords:
+    "Yash Dixit, Software Developer, Full-Stack Developer, Cloud Enthusiast, React, Node.js, Python, Java, Docker, Portfolio",
+  author: "Yash Dixit",
+  canonicalUrl: "https://yaxit-01.github.io/yash-portfolio/",
+  ogTitle: "Yash Dixit | Software Developer Portfolio",
+  ogDescription:
+    "Explore Yash Dixit's software development projects, technical skills, certifications, and experience in full-stack web development, backend engineering, and cloud technologies.",
+  ogImageUrl: "",
+  ogType: "website",
+  twitterCard: "summary_large_image",
+  twitterHandle: "@dixityash",
+  themeColor: "#08090d",
+  isPublished: true,
+};
+
+
